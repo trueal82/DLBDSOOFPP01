@@ -1,8 +1,9 @@
+import config
+from repository.habit_repository import HabitRepository
+from repository.in_memory_repository import InMemoryRepository
 from repository.json_repository import JsonRepository
 from repository.sqlite_repository import SQLiteRepository
-from repository.in_memory_repository import InMemoryRepository
-from repository.habit_repository import HabitRepository
-import config
+
 
 class RepositoryFactory:
     """ A factory class to create repository instances based on the env configuration."""

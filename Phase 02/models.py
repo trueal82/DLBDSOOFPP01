@@ -12,7 +12,7 @@ class Habit(BaseModel):
     frequency: ExecutionFrequency  # e.g., "daily", "weekly"
     start_date: datetime  # ISO format date string
 
-class HabitExceution(BaseModel):
+class HabitExecution(BaseModel):
     """Represents the execution of a habit on a specific datetime."""
     id: int
     habit_id: int

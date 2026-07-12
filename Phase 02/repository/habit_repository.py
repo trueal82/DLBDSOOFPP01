@@ -7,7 +7,7 @@ class HabitRepository(ABC):
     Defines the interface for habit repository implementations.
     """
     @abstractmethod
-    def get_habits(self) -> list[Habit]:
+    def get_all_habits(self) -> list[Habit]:
         """Returns a list of all habits."""
         pass
 
@@ -23,7 +23,7 @@ class HabitRepository(ABC):
 
     @abstractmethod
     def update_habit(self, habit: Habit):
-        ### TODO: Decice if we want this.
+        ### TODO: Decide if we want this.
         pass
 
     @abstractmethod

@@ -1,20 +1,18 @@
-import config
-
 from rich.console import Console
-from rich.prompt import Prompt, Confirm, IntPrompt
-from rich.table import Table
 from rich.panel import Panel
-
-from datetime import date
+from rich.prompt import IntPrompt
+from rich.table import Table
 
 from habit_service import HabitService
+
 
 class RichTui:
     """
     RichTui is a text-based user interface (TUI) for the habit tracker application.
     """
+
     def __init__(self, habit_service: HabitService) -> None:
-        self.habit_service : HabitService = habit_service
+        self.habit_service: HabitService = habit_service
         self.console = Console()
 
     def show_main_menu(self) -> None:
@@ -37,10 +35,10 @@ class RichTui:
             )
         )
 
-    def ask_menu_choice(self) -> str:
-        return Prompt.ask(
+    def ask_menu_choice(self) -> str | int:
+        return IntPrompt.ask(
             "Choose an option",
-            choices=["1", "2", "3", "4", "5","9"],
+            choices=["1", "2", "3", "4", "5", "9"],
             default="1",
             show_choices=False,
         )
@@ -53,7 +51,7 @@ class RichTui:
             self.show_main_menu()
             self.main_route_to_selected_option(self.ask_menu_choice())
 
-    def main_route_to_selected_option(self, choice: str) -> None:
+    def main_route_to_selected_option(self, choice: str | int) -> None:
         if choice == "1":
             # Show today's habits
             pass

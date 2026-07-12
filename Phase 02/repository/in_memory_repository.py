@@ -16,7 +16,7 @@ class InMemoryRepository(HabitRepository):
     def update_habit(self, habit):
         pass
 
-    def get_habits(self) -> list[Habit]:
+    def get_all_habits(self) -> list[Habit]:
         return self.habits
     
     def add_habit(self, habit) -> None:
