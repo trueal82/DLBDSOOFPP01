@@ -1,12 +1,17 @@
-import config
-import logging
+"""
+The main file to glue things together
+"""
 import argparse
+import logging
 
-from rich_tui import RichTui
+import config
 from habit_service import HabitService
 from imp_ex import ImpEx
+from rich_tui import RichTui
+
 
 def setup_logging() -> None:
+    """Setup logging"""
     logging.basicConfig(
         level=config.LOG_LEVEL,
         format="%(asctime)s %(levelname)-8s [%(name)s] %(message)s",
@@ -14,6 +19,7 @@ def setup_logging() -> None:
     )
 
 def setup_args():
+    """Setup arguments parsing"""
     parser = argparse.ArgumentParser()
     parser.add_argument("-r", "--read-from-file", type=str,
                         help="Read habits from a file", required=False, )
@@ -23,19 +29,17 @@ def setup_args():
 
 
 def main():
+    """The main function"""
     setup_logging()
     args = setup_args()
     service = HabitService()
 
     if not any(vars(args).values()):
         app = RichTui(service)
-        app.run()
-        return 0
-    else:
-        app = ImpEx(service)
-        app.run(args)
-        return 0
+        return app.run()
 
+    app = ImpEx(service)
+    return app.run(args)
 
 if __name__ == "__main__":
     # Your main code logic here

@@ -1,3 +1,6 @@
+"""
+Simple SQLiteRepository is a dummy implementation of the HabitoRepository interface.
+"""
 from models import Habit
 from repository.habit_repository import HabitRepository
 
@@ -24,4 +27,3 @@ class SQLiteRepository(HabitRepository):
 
     def __init__(self, db_path):
         self.db_path = db_path
-        pass  # Placeholder for future implementation

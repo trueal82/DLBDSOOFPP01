@@ -1,4 +1,8 @@
-import string
+"""
+Rich Tui module as a simple user interface for Habito
+"""
+
+import sys
 
 from rich.console import Console
 from rich.panel import Panel
@@ -38,6 +42,10 @@ class RichTui:
         )
 
     def ask_menu_choice(self) -> int:
+        """
+        Asks user to choose an option
+        :return:
+        """
         return int(IntPrompt.ask(
             "Choose an option",
             choices=["1", "2", "3", "4", "5", "9"],
@@ -46,6 +54,10 @@ class RichTui:
         ))
 
     def main_menu(self) -> None:
+        """
+        Main menu method to display the main menu
+        :return:
+        """
         # Run the main loop here
         while True:
             # Your main code logic here
@@ -53,29 +65,37 @@ class RichTui:
             self.main_route_to_selected_option(self.ask_menu_choice())
 
     def main_route_to_selected_option(self, choice: int) -> None:
+        """
+        Router method to map input to method calls
+        :param choice:
+        :return:
+        """
         if choice == 1:
-            # Show today's habits
             pass
+            # Show today's habits
         elif choice == 2:
             self.add_habit()
-            pass
         elif choice == 3:
+            pass
             # Mark habit done
-            pass
         elif choice == 4:
-            # Show history
             pass
+            # Show history
         elif choice == 5:
             # Show all habits
             self.print_all_habits()
         elif choice == 9:
             # Quit the application
             print("Exiting the application...")
-            exit(0)
+            sys.exit(0)
         else:
             print("Invalid choice. Please try again.")
 
     def print_all_habits(self) -> None:
+        """
+        Prints all habits
+        :return:
+        """
         habits = self.habit_service.get_all_habits()
         with self.console.pager():
             for habit in habits:
@@ -84,12 +104,17 @@ class RichTui:
     def run(self):
         """Main entry point for the TUI application."""
         self.main_menu()
+        return 0
 
     def add_habit(self):
-        name: str = Prompt.ask("Habbit name?")
-        if not name: return
+        """
+        Add habit to the habit_service
+        :return:
+        """
+        name: str = Prompt.ask("Habit name?")
+        if not name:
+            raise ValueError("Habit name cannot be empty.")
         description: str = Prompt.ask("Habit description?")
         frequency = PromptBase.ask("Habit frequency?",
                                     choices=self.habit_service.get_execution_frequencies())
         self.habit_service.add_habit(name=name, description=description, frequency=frequency)
-

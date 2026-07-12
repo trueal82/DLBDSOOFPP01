@@ -1,3 +1,6 @@
+"""
+Basic configuration for the tool
+"""
 import os
 from dotenv import load_dotenv
 
