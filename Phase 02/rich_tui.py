@@ -1,6 +1,8 @@
+import string
+
 from rich.console import Console
 from rich.panel import Panel
-from rich.prompt import IntPrompt
+from rich.prompt import IntPrompt, Prompt, PromptBase
 from rich.table import Table
 
 from habit_service import HabitService
@@ -35,39 +37,38 @@ class RichTui:
             )
         )
 
-    def ask_menu_choice(self) -> str | int:
-        return IntPrompt.ask(
+    def ask_menu_choice(self) -> int:
+        return int(IntPrompt.ask(
             "Choose an option",
             choices=["1", "2", "3", "4", "5", "9"],
             default="1",
             show_choices=False,
-        )
+        ))
 
     def main_menu(self) -> None:
         # Run the main loop here
-        user_wants_to_exit = False
-        while not user_wants_to_exit:
+        while True:
             # Your main code logic here
             self.show_main_menu()
             self.main_route_to_selected_option(self.ask_menu_choice())
 
-    def main_route_to_selected_option(self, choice: str | int) -> None:
-        if choice == "1":
+    def main_route_to_selected_option(self, choice: int) -> None:
+        if choice == 1:
             # Show today's habits
             pass
-        elif choice == "2":
-            # Add habit
+        elif choice == 2:
+            self.add_habit()
             pass
-        elif choice == "3":
+        elif choice == 3:
             # Mark habit done
             pass
-        elif choice == "4":
+        elif choice == 4:
             # Show history
             pass
-        elif choice == "5":
+        elif choice == 5:
             # Show all habits
             self.print_all_habits()
-        elif choice == "9":
+        elif choice == 9:
             # Quit the application
             print("Exiting the application...")
             exit(0)
@@ -83,3 +84,12 @@ class RichTui:
     def run(self):
         """Main entry point for the TUI application."""
         self.main_menu()
+
+    def add_habit(self):
+        name: str = Prompt.ask("Habbit name?")
+        if not name: return
+        description: str = Prompt.ask("Habit description?")
+        frequency = PromptBase.ask("Habit frequency?",
+                                    choices=self.habit_service.get_execution_frequencies())
+        self.habit_service.add_habit(name=name, description=description, frequency=frequency)
+
