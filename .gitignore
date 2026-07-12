@@ -1,2 +1,4 @@
 .DS_Store
 Assignments Portfolio_DLBDSOOFPP01.pdf
+.venv/
+__pycache__/

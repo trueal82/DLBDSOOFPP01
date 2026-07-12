@@ -1,12 +1,13 @@
-from json_repository import JsonRepository
-from sqlite_repository import SQLiteRepository
+from repository.json_repository import JsonRepository
+from repository.sqlite_repository import SQLiteRepository
+from repository.habit_repository import HabitRepository
 import config
 
 class RepositoryFactory:
     """ A factory class to create repository instances based on the env configuration."""
     
     @staticmethod
-    def get_repository():
+    def get_repository() -> HabitRepository:
         """
         Returns the configured repository instance based on the HABIT_REPOSITORY environment variable
         Returns:

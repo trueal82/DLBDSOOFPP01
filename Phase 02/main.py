@@ -14,7 +14,8 @@ def setup_logging() -> None:
 def main():
     setup_logging()
     service = HabitService()
-    app = RichTui(service)
+    # consider making this async to be able to spawn an API server at the same time
+    app = RichTui(service) 
     app.run()
     return 0
 

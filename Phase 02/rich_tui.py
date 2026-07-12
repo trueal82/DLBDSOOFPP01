@@ -7,12 +7,18 @@ from rich.panel import Panel
 
 from datetime import date
 
+from habit_service import HabitService
+
 class RichTui:
+    """
+    RichTui is a text-based user interface (TUI) for the habit tracker application.
+    """
     def __init__(self, habit_service: HabitService) -> None:
         self.habit_service = habit_service
         self.console = Console()
 
-    def show_menu(self) -> None:
+    def show_main_menu(self) -> None:
+        """Displays the main menu to the user."""
         table = Table.grid(padding=(0, 2))
         table.add_column(justify="right", style="cyan", no_wrap=True)
         table.add_column(style="white")
@@ -69,7 +75,7 @@ class RichTui:
         user_wants_to_exit = False
         while not user_wants_to_exit:
             # Your main code logic here
-            self.show_menu()
+            self.show_main_menu()
             self.main_route_to_selected_option(self.ask_menu_choice())
 
     def main_route_to_selected_option(self, choice: str) -> None:
