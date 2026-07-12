@@ -1,7 +1,7 @@
 import config
 
 from rich.console import Console
-from rich.prompt import Prompt, Confirm
+from rich.prompt import Prompt, Confirm, IntPrompt
 from rich.table import Table
 from rich.panel import Panel
 
@@ -14,7 +14,7 @@ class RichTui:
     RichTui is a text-based user interface (TUI) for the habit tracker application.
     """
     def __init__(self, habit_service: HabitService) -> None:
-        self.habit_service = habit_service
+        self.habit_service : HabitService = habit_service
         self.console = Console()
 
     def show_main_menu(self) -> None:
@@ -26,7 +26,8 @@ class RichTui:
         table.add_row("2", "Add habit")
         table.add_row("3", "Mark habit done")
         table.add_row("4", "Show history")
-        table.add_row("5", "Quit")
+        table.add_row("5", "Show all habits")
+        table.add_row("9", "Quit")
 
         self.console.print(
             Panel(
@@ -39,33 +40,7 @@ class RichTui:
     def ask_menu_choice(self) -> str:
         return Prompt.ask(
             "Choose an option",
-            choices=["1", "2", "3", "4", "5"],
-            default="1",
-            show_choices=False,
-        )
-
-    def show_menu(self) -> None:
-        table = Table.grid(padding=(0, 2))
-        table.add_column(justify="right", style="cyan", no_wrap=True)
-        table.add_column(style="white")
-        table.add_row("1", "Show today's habits")
-        table.add_row("2", "Add habit")
-        table.add_row("3", "Mark habit done")
-        table.add_row("4", "Show history")
-        table.add_row("5", "Quit")
-
-        self.console.print(
-            Panel(
-                table,
-                title="[bold]Habit Tracker[/bold]",
-                border_style="blue",
-            )
-        )
-
-    def ask_menu_choice(self) -> str:
-        return Prompt.ask(
-            "Choose an option",
-            choices=["1", "2", "3", "4", "5"],
+            choices=["1", "2", "3", "4", "5","9"],
             default="1",
             show_choices=False,
         )
@@ -92,11 +67,20 @@ class RichTui:
             # Show history
             pass
         elif choice == "5":
+            # Show all habits
+            self.print_all_habits()
+        elif choice == "9":
             # Quit the application
             print("Exiting the application...")
             exit(0)
         else:
             print("Invalid choice. Please try again.")
+
+    def print_all_habits(self) -> None:
+        habits = self.habit_service.get_all_habits()
+        with self.console.pager():
+            for habit in habits:
+                self.console.print_json(habit.model_dump_json(indent=2))
 
     def run(self):
         """Main entry point for the TUI application."""

@@ -7,6 +7,6 @@ load_dotenv()
 LOG_LEVEL = os.getenv("LOGGING_LEVEL", "INFO")
 
 # Repository configuration
-HABIT_REPOSITORY = os.getenv("HABIT_REPOSITORY", "JsonRepository")
+HABIT_REPOSITORY = os.getenv("HABIT_REPOSITORY", "InMemoryRepository")
 JSON_FILE_PATH = os.getenv("JSON_FILE_PATH", "./habits.json")
 SQLITE_DB_PATH = os.getenv("SQLITE_DB_PATH", "./habits.sqlite")

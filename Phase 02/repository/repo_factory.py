@@ -1,5 +1,6 @@
 from repository.json_repository import JsonRepository
 from repository.sqlite_repository import SQLiteRepository
+from repository.in_memory_repository import InMemoryRepository
 from repository.habit_repository import HabitRepository
 import config
 
@@ -21,6 +22,9 @@ class RepositoryFactory:
 
         if not repo_type:
             raise ValueError("HABIT_REPOSITORY is not set in the environment variables")
+        
+        if repo_type == "InMemoryRepository":
+            return InMemoryRepository()
         
         if repo_type == "JsonRepository":
             return JsonRepository(config.JSON_FILE_PATH)
