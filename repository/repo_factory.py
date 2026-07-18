@@ -31,7 +31,7 @@ class RepositoryFactory:
             return InMemoryRepository()
 
         if repo_type == "JsonRepository":
-            return JsonRepository(config.JSON_FILE_PATH)
+            return JsonRepository()
 
         if repo_type == "SQLiteRepository":
             db_path = config.SQLITE_DB_PATH

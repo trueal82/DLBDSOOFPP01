@@ -2,13 +2,16 @@
 Abstract base class for habit repositories.
 """
 from abc import ABC, abstractmethod
+
 from models import Habit
+
 
 class HabitRepository(ABC):
     """
     Abstract base class for habit repositories.
     Defines the interface for habit repository implementations.
     """
+
     @abstractmethod
     def get_all_habits(self) -> list[Habit]:
         """Returns a list of all habits."""
@@ -30,3 +33,11 @@ class HabitRepository(ABC):
     def delete_habit(self, habit_id):
         """Deletes the habit from the repository."""
         ### TODO: Decide if we want this.
+
+    @abstractmethod
+    def get_due_habits(self) -> list[Habit]:
+        """Returns a list of all due habits."""
+
+    @abstractmethod
+    def execute_habit(self, habit_id: int, comment: str) -> None:
+        """Execute a habit and update the habit in the repository."""

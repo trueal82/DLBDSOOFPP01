@@ -12,6 +12,7 @@ from repository.repo_factory import RepositoryFactory
 
 class HabitService:
     """This is the main service for clients(TUIs, APIs,...) to interact with"""
+
     def __init__(self):
         self.repository: HabitRepository = RepositoryFactory.get_repository()
 
@@ -57,6 +58,13 @@ class HabitService:
             raise ValueError("invalid habit frequency") from e
         if not start_date:
             start_date = datetime.today()
-        habit:Habit = Habit(name=name, description=description, frequency=frequency,
-                            start_date=start_date, id=None)
+        habit: Habit = Habit(name=name, description=description, frequency=frequency,
+                             start_date=start_date, id=None)
         self.repository.add_habit(habit)
+
+    def get_due_habits(self) -> list[Habit]:
+        """Returns a list of all due habits."""
+        return self.repository.get_due_habits()
+
+    def execute_habits(self, habit_id: int, comment: str) -> None:
+        self.repository.execute_habit(habit_id=habit_id, comment=comment)

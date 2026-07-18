@@ -1,9 +1,9 @@
 """
 This is a simple, non-persistent repo
 """
-from datetime import datetime
+from datetime import datetime, timedelta
 
-from models import Habit, ExecutionFrequency
+from models import Habit, ExecutionFrequency, HabitExecution
 from repository.habit_repository import HabitRepository
 
 
@@ -25,6 +25,7 @@ class InMemoryRepository(HabitRepository):
                 updated_a_habit = True
                 h.name = habit.name
                 h.description = habit.description
+                h.executions = habit.executions
         if not updated_a_habit:
             raise ValueError(f"No habit with given it {habit.id} found")
 
@@ -57,3 +58,22 @@ class InMemoryRepository(HabitRepository):
             if habit.id == habit_id:
                 return habit
         raise ValueError(f"No habit with given it {habit_id} found")
+
+    def get_due_habits(self) -> list[Habit]:
+        list_of_due_habits: list[Habit] = []
+        for h in self.habits:
+            e = h.executions
+            e.sort(key=lambda x: x.date)
+            last_execution: datetime = e[-1].date
+            if h.frequency == ExecutionFrequency.DAILY:
+                if not last_execution.day == datetime.today().day:
+                    list_of_due_habits.append(h)
+            elif h.frequency == ExecutionFrequency.WEEKLY:
+                if datetime.today().day - last_execution.day >= timedelta(days=6):
+                    list_of_due_habits.append(h)
+        return list_of_due_habits
+
+    def execute_habit(self, habit_id: int) -> None:
+        h: Habit = self.get_habit_by_id(habit_id)
+        h.executions.append(HabitExecution(date=datetime.today()))
+        self.update_habit(h)

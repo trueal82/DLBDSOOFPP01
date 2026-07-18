@@ -10,6 +10,7 @@ from rich.prompt import IntPrompt, Prompt, PromptBase
 from rich.table import Table
 
 from habit_service import HabitService
+from models import Habit
 
 
 class RichTui:
@@ -30,7 +31,7 @@ class RichTui:
         table.add_row("2", "Add habit")
         table.add_row("3", "Mark habit done")
         table.add_row("4", "Show history")
-        table.add_row("5", "Show all habits")
+        table.add_row("8", "Show all habits")
         table.add_row("9", "Quit")
 
         self.console.print(
@@ -48,7 +49,7 @@ class RichTui:
         """
         return int(IntPrompt.ask(
             "Choose an option",
-            choices=["1", "2", "3", "4", "5", "9"],
+            choices=[str(value) for value in range(1, 10)],  # event *Int*Prompt needs list[str]
             default="1",
             show_choices=False,
         ))
@@ -71,17 +72,17 @@ class RichTui:
         :return:
         """
         if choice == 1:
-            pass
+            self.print_due_habits()
             # Show today's habits
         elif choice == 2:
             self.add_habit()
         elif choice == 3:
-            pass
+            self.execute_habit()
             # Mark habit done
         elif choice == 4:
             pass
             # Show history
-        elif choice == 5:
+        elif choice == 8:
             # Show all habits
             self.print_all_habits()
         elif choice == 9:
@@ -91,15 +92,22 @@ class RichTui:
         else:
             print("Invalid choice. Please try again.")
 
+    def print_habits_as_table(self, habits: list[Habit]) -> None:
+        table: Table = Table(padding=(0, 2),
+                             title="[bold]Habits[/bold]", )
+        for key in Habit.model_fields:
+            table.add_column(key, justify="center", style="cyan", no_wrap=True)
+        for habit in habits:
+            table.add_row(*[str(value) for value in habit.model_dump(mode="json").values()])
+        self.console.print(table)
+
     def print_all_habits(self) -> None:
         """
         Prints all habits
         :return:
         """
         habits = self.habit_service.get_all_habits()
-        with self.console.pager():
-            for habit in habits:
-                self.console.print_json(habit.model_dump_json(indent=2))
+        self.print_habits_as_table(habits)
 
     def run(self):
         """Main entry point for the TUI application."""
@@ -116,5 +124,15 @@ class RichTui:
             raise ValueError("Habit name cannot be empty.")
         description: str = Prompt.ask("Habit description?")
         frequency = PromptBase.ask("Habit frequency?",
-                                    choices=self.habit_service.get_execution_frequencies())
+                                   choices=self.habit_service.get_execution_frequencies())
         self.habit_service.add_habit(name=name, description=description, frequency=frequency)
+
+    def print_due_habits(self) -> None:
+        self.print_habits_as_table(self.habit_service.get_due_habits())
+
+    def execute_habit(self) -> None:
+        self.print_due_habits()
+        h_id: int = int(IntPrompt.ask("Which habit do you want to execute? (id)"))
+        h_comment: str = PromptBase.ask("Optional comment?")
+        self.habit_service.execute_habits(habit_id=h_id, comment=h_comment)
+        self.main_menu()
