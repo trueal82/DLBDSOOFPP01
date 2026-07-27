@@ -3,7 +3,6 @@ Repository factory class to not make the service dependent on the repo impls.
 """
 import config
 from repository.habit_repository import HabitRepository
-from repository.in_memory_repository import InMemoryRepository
 from repository.json_repository import JsonRepository
 
 
@@ -25,11 +24,7 @@ class RepositoryFactory:
 
         if not repo_type:
             raise ValueError("HABIT_REPOSITORY is not set in the environment variables")
-
-        if repo_type == "InMemoryRepository":
-            return InMemoryRepository()
-
-        if repo_type == "JsonRepository":
+        elif repo_type == "JsonRepository":
             return JsonRepository()
 
         raise ValueError(f"Unknown repository type: {repo_type}")
