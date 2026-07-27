@@ -5,7 +5,6 @@ import config
 from repository.habit_repository import HabitRepository
 from repository.in_memory_repository import InMemoryRepository
 from repository.json_repository import JsonRepository
-from repository.sqlite_repository import SQLiteRepository
 
 
 class RepositoryFactory:
@@ -32,11 +31,5 @@ class RepositoryFactory:
 
         if repo_type == "JsonRepository":
             return JsonRepository()
-
-        if repo_type == "SQLiteRepository":
-            db_path = config.SQLITE_DB_PATH
-            if not db_path:
-                raise ValueError("db_path must be provided for SQLiteRepository")
-            return SQLiteRepository(db_path)
 
         raise ValueError(f"Unknown repository type: {repo_type}")

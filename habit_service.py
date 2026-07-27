@@ -13,8 +13,9 @@ from repository.repo_factory import RepositoryFactory
 class HabitService:
     """This is the main service for clients(TUIs, APIs,...) to interact with"""
 
-    def __init__(self):
-        self.repository: HabitRepository = RepositoryFactory.get_repository()
+    def __init__(self, repository_type: str | None = None):
+        if not repository_type:
+            self.repository: HabitRepository = RepositoryFactory.get_repository()
 
     def get_all_habits(self) -> list[Habit]:
         """

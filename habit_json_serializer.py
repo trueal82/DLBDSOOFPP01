@@ -4,7 +4,6 @@ Import and Export class for Habit
 import logging
 import pathlib
 from pathlib import Path
-
 from pydantic import TypeAdapter
 from pydantic_core import PydanticSerializationError
 
@@ -54,5 +53,6 @@ class HabitJsonSerializer:
         except PydanticSerializationError as e:
             self.logging.error("An error occurred while saving habit list: %s", e)
             raise
-
-        pathlib.Path(filename).write_bytes(json_data)
+        p = pathlib.Path(filename)
+        p.parent.mkdir(parents=True, exist_ok=True)
+        p.write_bytes(json_data)

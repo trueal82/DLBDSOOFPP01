@@ -8,9 +8,8 @@ Although it is closely related to the inMemoryRepo, and
 considering the DRY principle, not extracting certain methods
 to a shared base class to avoid complexity and maintenance pain
 """
-from datetime import timedelta, datetime
-
 import config
+from datetime import timedelta, datetime
 from habit_json_serializer import HabitJsonSerializer
 from models import Habit, ExecutionFrequency, HabitExecution
 from repository.habit_repository import HabitRepository
@@ -19,8 +18,15 @@ from repository.habit_repository import HabitRepository
 class JsonRepository(HabitRepository):
     """Simple Json Repository"""
 
-    def __init__(self):
-        super().__init__()
+    def __init__(self, json_file_path: str | None = None):
+        """
+        :param json_file_path: Can be proviced directly, but if omitted it
+        will be read from the config
+        """
+        if not json_file_path:
+            json_file_path = config.JSON_FILE_PATH
+        else:
+            self.json_file_path = json_file_path
         self.habits: list[Habit] = []
         self.serializer: HabitJsonSerializer = HabitJsonSerializer()
         self.habits = self.load_habits_from_disk()
@@ -71,10 +77,10 @@ class JsonRepository(HabitRepository):
         raise ValueError(f"No habit with given it {habit_id} found")
 
     def load_habits_from_disk(self):
-        return self.serializer.read_from_file(config.JSON_FILE_PATH)
+        return self.serializer.read_from_file(self.json_file_path)
 
     def save(self):
-        self.serializer.write_to_file(config.JSON_FILE_PATH, self.habits)
+        self.serializer.write_to_file(self.json_file_path, self.habits)
 
     def get_due_habits(self) -> list[Habit]:
         list_of_due_habits: list[Habit] = []

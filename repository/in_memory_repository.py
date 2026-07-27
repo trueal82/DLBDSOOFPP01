@@ -62,6 +62,8 @@ class InMemoryRepository(HabitRepository):
     def get_due_habits(self) -> list[Habit]:
         list_of_due_habits: list[Habit] = []
         for h in self.habits:
+            if not h.executions:
+                continue
             e = h.executions
             e.sort(key=lambda x: x.date)
             last_execution: datetime = e[-1].date
@@ -73,7 +75,7 @@ class InMemoryRepository(HabitRepository):
                     list_of_due_habits.append(h)
         return list_of_due_habits
 
-    def execute_habit(self, habit_id: int) -> None:
+    def execute_habit(self, habit_id: int, comment: str) -> None:
         h: Habit = self.get_habit_by_id(habit_id)
         h.executions.append(HabitExecution(date=datetime.today()))
         self.update_habit(h)

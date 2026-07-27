@@ -8,7 +8,7 @@ from pydantic import BaseModel, Field
 
 class Habit(BaseModel):
     """The primary domain model for the habit tracker application."""
-    id: int | None  # Needs to be able to be none for new objects with certain repositories
+    id: int | None = ""  # Needs to be able to be none for new objects with certain repositories
     name: str
     description: str
     frequency: ExecutionFrequency  # e.g., "daily", "weekly"
