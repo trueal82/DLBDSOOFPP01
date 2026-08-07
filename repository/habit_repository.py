@@ -3,7 +3,7 @@ Abstract base class for habit repositories.
 """
 from abc import ABC, abstractmethod
 
-from models import Habit
+from models.models import Habit
 
 
 class HabitRepository(ABC):

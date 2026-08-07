@@ -4,8 +4,8 @@ The main service for clients(TUIs, APIs, ...) to interact with
 
 from datetime import datetime
 
-from models import ExecutionFrequency
-from models import Habit
+from models.models import ExecutionFrequency
+from models.models import Habit
 from repository.habit_repository import HabitRepository
 from repository.repo_factory import RepositoryFactory
 

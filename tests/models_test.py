@@ -1,9 +1,9 @@
 """Tests for the models module."""
-import pytest
-from datetime import datetime
 from datetime import datetime
 
-from models import Habit, ExecutionFrequency, HabitExecution
+import pytest
+
+from models.models import Habit, ExecutionFrequency, HabitExecution
 
 
 def test_habit_instance():

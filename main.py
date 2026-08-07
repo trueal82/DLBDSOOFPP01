@@ -5,9 +5,9 @@ import argparse
 import logging
 
 import config
-from habit_service import HabitService
-from imp_ex import ImpEx
-from rich_tui import RichTui
+from clients.imp_ex import ImpEx
+from clients.rich_tui import RichTui
+from services.habit_service import HabitService
 
 
 def setup_logging() -> None:
@@ -17,6 +17,7 @@ def setup_logging() -> None:
         format="%(asctime)s %(levelname)-8s [%(name)s] %(message)s",
         datefmt="%Y-%m-%d %H:%M:%S",
     )
+
 
 def setup_args():
     """Setup arguments parsing"""
@@ -40,6 +41,7 @@ def main():
 
     app = ImpEx(service)
     return app.run(args)
+
 
 if __name__ == "__main__":
     # Your main code logic here

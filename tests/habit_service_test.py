@@ -1,10 +1,11 @@
 """Tests for the habit_service module."""
+from datetime import datetime
+
 import pytest
-from datetime import datetime
-from datetime import datetime
-from habit_service import HabitService
-from models import Habit, ExecutionFrequency, HabitExecution
+
+from models.models import Habit, ExecutionFrequency
 from repository.json_repository import JsonRepository
+from services.habit_service import HabitService
 
 
 @pytest.fixture

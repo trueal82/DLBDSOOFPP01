@@ -3,14 +3,15 @@ Rich Tui module as a simple user interface for Habito
 """
 
 import sys
+from enum import Enum
 
 from rich.console import Console
 from rich.panel import Panel
 from rich.prompt import IntPrompt, Prompt, PromptBase
 from rich.table import Table
 
-from habit_service import HabitService
-from models import Habit
+from models.models import Habit
+from services.habit_service import HabitService
 
 
 class RichTui:
@@ -22,6 +23,15 @@ class RichTui:
         self.habit_service: HabitService = habit_service
         self.console = Console()
 
+    # Entry point
+    #############
+    def run(self):
+        """Main entry point for the TUI application."""
+        self.main_menu()
+        return 0
+
+    # Main menu
+    ###########
     def show_main_menu(self) -> None:
         """Displays the main menu to the user."""
         table = Table.grid(padding=(0, 2))
@@ -42,14 +52,16 @@ class RichTui:
             )
         )
 
-    def ask_menu_choice(self) -> int:
+    def ask_menu_choice(self, upper: int | None = None) -> int:
         """
         Asks user to choose an option
         :return:
         """
+        if not upper:
+            upper = 10
         return int(IntPrompt.ask(
             "Choose an option",
-            choices=[str(value) for value in range(1, 10)],  # event *Int*Prompt needs list[str]
+            choices=[str(value) for value in range(1, upper)],  # event *Int*Prompt needs list[str]
             default="1",
             show_choices=False,
         ))
@@ -63,7 +75,7 @@ class RichTui:
         while True:
             # Your main code logic here
             self.show_main_menu()
-            self.main_route_to_selected_option(self.ask_menu_choice())
+            self.main_route_to_selected_option(self.ask_menu_choice(upper=10))
 
     def main_route_to_selected_option(self, choice: int) -> None:
         """
@@ -92,14 +104,36 @@ class RichTui:
         else:
             print("Invalid choice. Please try again.")
 
-    def print_habits_as_table(self, habits: list[Habit]) -> None:
+    # Printer
+    #########
+    def pretty(self, ugly: Any) -> str:
+        """Helper to make ugly pretty for console output"""
+        if isinstance(ugly, Enum):
+            return str(ugly.value)
+        return str(ugly)
+
+    def print_habits_as_table(self, habits: list[Habit], visible_keys: list[str] | None = None) -> None:
         table: Table = Table(padding=(0, 2),
                              title="[bold]Habits[/bold]", )
-        for key in Habit.model_fields:
+
+        if visible_keys is None:
+            keys = Habit.model_fields
+        else:
+            keys = visible_keys
+
+        for key in keys:
             table.add_column(key, justify="center", style="cyan", no_wrap=True)
+
         for habit in habits:
-            table.add_row(*[str(value) for value in habit.model_dump(mode="json").values()])
+            col = []
+            for key in keys:
+                col.append(getattr(habit, key, ""))
+            table.add_row(*[self.pretty(value) for value in col])
+
         self.console.print(table)
+
+    # Show all habits
+    #################
 
     def print_all_habits(self) -> None:
         """
@@ -107,13 +141,10 @@ class RichTui:
         :return:
         """
         habits = self.habit_service.get_all_habits()
-        self.print_habits_as_table(habits)
+        visible_keys: list[str] = ["name", "description", "frequency"]
+        self.print_habits_as_table(habits, visible_keys=visible_keys)
 
-    def run(self):
-        """Main entry point for the TUI application."""
-        self.main_menu()
-        return 0
-
+    # Adding habbit
     def add_habit(self):
         """
         Add habit to the habit_service
@@ -127,9 +158,13 @@ class RichTui:
                                    choices=self.habit_service.get_execution_frequencies())
         self.habit_service.add_habit(name=name, description=description, frequency=frequency)
 
+    # Print due habits
+    ##################
     def print_due_habits(self) -> None:
         self.print_habits_as_table(self.habit_service.get_due_habits())
 
+    # Exexute habit
+    ###############
     def execute_habit(self) -> None:
         self.print_due_habits()
         h_id: int = int(IntPrompt.ask("Which habit do you want to execute? (id)"))

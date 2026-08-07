@@ -4,10 +4,11 @@ Import and Export class for Habit
 import logging
 import pathlib
 from pathlib import Path
+
 from pydantic import TypeAdapter
 from pydantic_core import PydanticSerializationError
 
-from models import Habit
+from models.models import Habit
 
 
 class HabitJsonSerializer:

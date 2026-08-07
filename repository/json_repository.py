@@ -4,15 +4,13 @@ It assumes a single user process
 For using with API / Multiuser it is not recommended
 due to missing synch / file locking
 
-Although it is closely related to the inMemoryRepo, and
-considering the DRY principle, not extracting certain methods
-to a shared base class to avoid complexity and maintenance pain
 """
-import config
 from datetime import timedelta, datetime
-from habit_json_serializer import HabitJsonSerializer
-from models import Habit, ExecutionFrequency, HabitExecution
+
+import config
+from models.models import Habit, ExecutionFrequency, HabitExecution
 from repository.habit_repository import HabitRepository
+from utils.habit_json_serializer import HabitJsonSerializer
 
 
 class JsonRepository(HabitRepository):
@@ -24,7 +22,7 @@ class JsonRepository(HabitRepository):
         will be read from the config
         """
         if not json_file_path:
-            json_file_path = config.JSON_FILE_PATH
+            self.json_file_path = config.JSON_FILE_PATH
         else:
             self.json_file_path = json_file_path
         self.habits: list[Habit] = []
