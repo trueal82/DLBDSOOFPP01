@@ -26,5 +26,5 @@ class HabitExecution(BaseModel):
 
 class ExecutionFrequency(Enum):
     """Enum representing the execution frequency."""
-    WEEKLY = "weekly"
-    DAILY = "daily"
+    WEEKLY: int = "7"
+    DAILY: int = "1"

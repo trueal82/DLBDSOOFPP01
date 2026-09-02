@@ -161,7 +161,8 @@ class RichTui:
     # Print due habits
     ##################
     def print_due_habits(self) -> None:
-        self.print_habits_as_table(self.habit_service.get_due_habits())
+        self.print_habits_as_table(habits=self.habit_service.get_due_habits(),
+                                   visible_keys=["id", "name", "description", "frequency"])
 
     # Exexute habit
     ###############

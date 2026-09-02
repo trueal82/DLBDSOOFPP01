@@ -5,7 +5,7 @@ import argparse
 import logging
 
 import config
-from clients.imp_ex import ImpEx
+from clients.cli import CLI
 from clients.rich_tui import RichTui
 from services.habit_service import HabitService
 
@@ -39,7 +39,7 @@ def main():
         app = RichTui(service)
         return app.run()
 
-    app = ImpEx(service)
+    app = CLI(service)
     return app.run(args)
 
 

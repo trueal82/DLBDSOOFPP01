@@ -5,7 +5,7 @@ from services.habit_service import HabitService
 from utils.habit_json_serializer import HabitJsonSerializer
 
 
-class ImpEx:
+class CLI:
     def __init__(self, service: HabitService):
         self.service: HabitService = service
         self.logging: logging.Logger = logging.getLogger(__name__)
