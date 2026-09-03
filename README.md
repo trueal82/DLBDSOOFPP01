@@ -1,10 +1,6 @@
 # Habito
 This is the implementation of Habito
 
-
-
-
-
 # Installation
 The application is an installable Python package. The recommended way is a
 virtual environment:
