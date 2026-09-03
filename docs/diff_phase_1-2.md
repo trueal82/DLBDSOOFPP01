@@ -40,4 +40,4 @@ the reason for each of them.
 - A deterministic sample-data generator (`scripts/generate_sample_data.py`)
   for the 5 predefined habits with 4 weeks of example tracking data.
 - A unit test suite (domain models, repository, serializer, factory,
-  analytics, service and CLI; 54 tests).
+  analytics, service and CLI; 56 tests).
