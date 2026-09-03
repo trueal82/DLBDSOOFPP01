@@ -1,5 +1,7 @@
 .DS_Store
 docs/Assignments Portfolio_DLBDSOOFPP01.pdf
+# personal submission documents stay local
+docs/Truemper-*.pdf
 .venv/
 __pycache__/
 .idea/
