@@ -68,7 +68,7 @@ Configuration is read from the environment (a `.env` file is supported, see
 |--------------------|--------------------------|--------------------------------------------|
 | `HABIT_REPOSITORY` | `JsonRepository`         | Repository implementation to use            |
 | `JSON_FILE_PATH`   | `./data/repository.json` | File the JsonRepository persists to         |
-| `LOG_LEVEL`        | `INFO`                   | Logging level                               |
+| `LOGGING_LEVEL`   | `INFO`                   | Logging level                               |
 
 ## Predefined habits and sample data
 The application ships with **5 predefined habits** (3 daily, 2 weekly) and
