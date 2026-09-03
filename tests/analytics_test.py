@@ -96,6 +96,31 @@ def test_single_execution_streak():
     assert streak.start == streak.end == date(2026, 3, 1)
 
 
+def test_duplicate_execution_in_same_day_does_not_break_daily_streak():
+    habit = daily_habit()
+    days = [date(2026, 3, 1) + timedelta(days=i) for i in range(3)]
+    habit.executions = ([execution(1, 1, days[0]), execution(1, 2, days[0])]
+                        + [execution(1, i + 1, day)
+                           for i, day in enumerate(days[1:], start=2)])
+    streak = analytics.get_longest_streak_for_habit(habit)
+    assert streak is not None
+    assert streak.length == 3
+
+
+def test_duplicate_execution_in_same_week_does_not_break_weekly_streak():
+    habit = weekly_habit()
+    # three consecutive ISO weeks, with a duplicate check-off in week 2
+    habit.executions = [execution(1, 1, date(2026, 1, 7)),
+                        execution(1, 2, date(2026, 1, 13)),
+                        execution(1, 3, date(2026, 1, 15)),
+                        execution(1, 4, date(2026, 1, 21))]
+    streak = analytics.get_longest_streak_for_habit(habit)
+    assert streak is not None
+    assert streak.length == 3
+    assert streak.start == date(2026, 1, 5)
+    assert streak.end == date(2026, 1, 19)
+
+
 def test_no_executions_returns_none():
     assert analytics.get_longest_streak_for_habit(daily_habit()) is None
     assert analytics.get_longest_streak_all([daily_habit(), weekly_habit()]) is None

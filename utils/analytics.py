@@ -90,7 +90,8 @@ def _periods(habit: Habit) -> list[date]:
     at least one execution: calendar days for daily habits, ISO-week
     Mondays for weekly habits."""
     if habit.frequency == ExecutionFrequency.WEEKLY:
-        return sorted(map(_iso_week_monday, habit.executions))
+        return sorted({_iso_week_monday(execution)
+                       for execution in habit.executions})
     return sorted({execution.date.date() for execution in habit.executions})
 
 
