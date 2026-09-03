@@ -6,25 +6,28 @@ from repository.habit_repository import HabitRepository
 from repository.json_repository import JsonRepository
 
 
-class RepositoryFactory:
+class RepositoryFactory:  # pylint: disable=too-few-public-methods
     """ A factory class to create repository instances based on the env configuration."""
 
     @staticmethod
-    def get_repository() -> HabitRepository:
+    def get_repository(repo_type: str | None = None) -> HabitRepository:
         """
-        Returns the configured repository instance based on the HABIT_REPOSITORY
-        environment variable
+        Returns the repository instance for the given type. If no type is given
+        it falls back to the HABIT_REPOSITORY environment variable / config.
+        Args:
+            repo_type: name of the repository implementation to instantiate
         Returns:
             an instance of the appropriate repository class
         Raises:
-            ValueError: If the HABIT_REPOSITORY environment variable is not set or
-            has an unknown value.
+            ValueError: If no repository type is given/configured or the type
+            is unknown.
         """
-        repo_type = config.HABIT_REPOSITORY
+        if not repo_type:
+            repo_type = config.HABIT_REPOSITORY
 
         if not repo_type:
             raise ValueError("HABIT_REPOSITORY is not set in the environment variables")
-        elif repo_type == "JsonRepository":
+        if repo_type == "JsonRepository":
             return JsonRepository()
 
         raise ValueError(f"Unknown repository type: {repo_type}")

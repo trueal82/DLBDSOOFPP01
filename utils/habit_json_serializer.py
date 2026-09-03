@@ -40,8 +40,7 @@ class HabitJsonSerializer:
         """
         Write the habit list to a file
         :param habits: list of habit objects
-        :param filename: the filename:
-        :param args: the command line arguments
+        :param filename: the filename
         :return:
         :raises Exception: if an error occurred while saving the habit list
         """

@@ -1,0 +1,425 @@
+[
+  {
+    "id": 1,
+    "name": "Drink water",
+    "description": "Drink 2 litres of water",
+    "frequency": "daily",
+    "start_date": "2026-08-03T00:00:00",
+    "executions": [
+      {
+        "id": 1,
+        "habit_id": 1,
+        "date": "2026-08-03T18:00:00",
+        "comment": "stayed hydrated"
+      },
+      {
+        "id": 2,
+        "habit_id": 1,
+        "date": "2026-08-04T18:00:00",
+        "comment": "stayed hydrated"
+      },
+      {
+        "id": 3,
+        "habit_id": 1,
+        "date": "2026-08-05T18:00:00",
+        "comment": "stayed hydrated"
+      },
+      {
+        "id": 4,
+        "habit_id": 1,
+        "date": "2026-08-06T18:00:00",
+        "comment": "stayed hydrated"
+      },
+      {
+        "id": 5,
+        "habit_id": 1,
+        "date": "2026-08-07T18:00:00",
+        "comment": "stayed hydrated"
+      },
+      {
+        "id": 6,
+        "habit_id": 1,
+        "date": "2026-08-08T18:00:00",
+        "comment": "stayed hydrated"
+      },
+      {
+        "id": 7,
+        "habit_id": 1,
+        "date": "2026-08-09T18:00:00",
+        "comment": "stayed hydrated"
+      },
+      {
+        "id": 8,
+        "habit_id": 1,
+        "date": "2026-08-10T18:00:00",
+        "comment": "stayed hydrated"
+      },
+      {
+        "id": 9,
+        "habit_id": 1,
+        "date": "2026-08-11T18:00:00",
+        "comment": "stayed hydrated"
+      },
+      {
+        "id": 10,
+        "habit_id": 1,
+        "date": "2026-08-12T18:00:00",
+        "comment": "stayed hydrated"
+      },
+      {
+        "id": 11,
+        "habit_id": 1,
+        "date": "2026-08-13T18:00:00",
+        "comment": "stayed hydrated"
+      },
+      {
+        "id": 12,
+        "habit_id": 1,
+        "date": "2026-08-14T18:00:00",
+        "comment": "stayed hydrated"
+      },
+      {
+        "id": 13,
+        "habit_id": 1,
+        "date": "2026-08-15T18:00:00",
+        "comment": "stayed hydrated"
+      },
+      {
+        "id": 14,
+        "habit_id": 1,
+        "date": "2026-08-16T18:00:00",
+        "comment": "stayed hydrated"
+      },
+      {
+        "id": 15,
+        "habit_id": 1,
+        "date": "2026-08-17T18:00:00",
+        "comment": "stayed hydrated"
+      },
+      {
+        "id": 16,
+        "habit_id": 1,
+        "date": "2026-08-18T18:00:00",
+        "comment": "stayed hydrated"
+      },
+      {
+        "id": 17,
+        "habit_id": 1,
+        "date": "2026-08-19T18:00:00",
+        "comment": "stayed hydrated"
+      },
+      {
+        "id": 18,
+        "habit_id": 1,
+        "date": "2026-08-20T18:00:00",
+        "comment": "stayed hydrated"
+      },
+      {
+        "id": 19,
+        "habit_id": 1,
+        "date": "2026-08-21T18:00:00",
+        "comment": "stayed hydrated"
+      },
+      {
+        "id": 20,
+        "habit_id": 1,
+        "date": "2026-08-22T18:00:00",
+        "comment": "stayed hydrated"
+      },
+      {
+        "id": 21,
+        "habit_id": 1,
+        "date": "2026-08-23T18:00:00",
+        "comment": "stayed hydrated"
+      },
+      {
+        "id": 22,
+        "habit_id": 1,
+        "date": "2026-08-24T18:00:00",
+        "comment": "stayed hydrated"
+      },
+      {
+        "id": 23,
+        "habit_id": 1,
+        "date": "2026-08-25T18:00:00",
+        "comment": "stayed hydrated"
+      },
+      {
+        "id": 24,
+        "habit_id": 1,
+        "date": "2026-08-26T18:00:00",
+        "comment": "stayed hydrated"
+      },
+      {
+        "id": 25,
+        "habit_id": 1,
+        "date": "2026-08-27T18:00:00",
+        "comment": "stayed hydrated"
+      },
+      {
+        "id": 26,
+        "habit_id": 1,
+        "date": "2026-08-28T18:00:00",
+        "comment": "stayed hydrated"
+      },
+      {
+        "id": 27,
+        "habit_id": 1,
+        "date": "2026-08-29T18:00:00",
+        "comment": "stayed hydrated"
+      },
+      {
+        "id": 28,
+        "habit_id": 1,
+        "date": "2026-08-30T18:00:00",
+        "comment": "stayed hydrated"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Read 30 minutes",
+    "description": "Read a book for 30 minutes",
+    "frequency": "daily",
+    "start_date": "2026-08-03T00:00:00",
+    "executions": [
+      {
+        "id": 1,
+        "habit_id": 2,
+        "date": "2026-08-03T18:00:00",
+        "comment": "read"
+      },
+      {
+        "id": 2,
+        "habit_id": 2,
+        "date": "2026-08-04T18:00:00",
+        "comment": "read"
+      },
+      {
+        "id": 3,
+        "habit_id": 2,
+        "date": "2026-08-05T18:00:00",
+        "comment": "read"
+      },
+      {
+        "id": 4,
+        "habit_id": 2,
+        "date": "2026-08-06T18:00:00",
+        "comment": "read"
+      },
+      {
+        "id": 5,
+        "habit_id": 2,
+        "date": "2026-08-07T18:00:00",
+        "comment": "read"
+      },
+      {
+        "id": 6,
+        "habit_id": 2,
+        "date": "2026-08-08T18:00:00",
+        "comment": "read"
+      },
+      {
+        "id": 7,
+        "habit_id": 2,
+        "date": "2026-08-09T18:00:00",
+        "comment": "read"
+      },
+      {
+        "id": 8,
+        "habit_id": 2,
+        "date": "2026-08-10T18:00:00",
+        "comment": "read"
+      },
+      {
+        "id": 9,
+        "habit_id": 2,
+        "date": "2026-08-11T18:00:00",
+        "comment": "read"
+      },
+      {
+        "id": 10,
+        "habit_id": 2,
+        "date": "2026-08-12T18:00:00",
+        "comment": "read"
+      },
+      {
+        "id": 11,
+        "habit_id": 2,
+        "date": "2026-08-16T18:00:00",
+        "comment": "read"
+      },
+      {
+        "id": 12,
+        "habit_id": 2,
+        "date": "2026-08-17T18:00:00",
+        "comment": "read"
+      },
+      {
+        "id": 13,
+        "habit_id": 2,
+        "date": "2026-08-18T18:00:00",
+        "comment": "read"
+      },
+      {
+        "id": 14,
+        "habit_id": 2,
+        "date": "2026-08-19T18:00:00",
+        "comment": "read"
+      },
+      {
+        "id": 15,
+        "habit_id": 2,
+        "date": "2026-08-20T18:00:00",
+        "comment": "read"
+      },
+      {
+        "id": 16,
+        "habit_id": 2,
+        "date": "2026-08-21T18:00:00",
+        "comment": "read"
+      },
+      {
+        "id": 17,
+        "habit_id": 2,
+        "date": "2026-08-22T18:00:00",
+        "comment": "read"
+      },
+      {
+        "id": 18,
+        "habit_id": 2,
+        "date": "2026-08-23T18:00:00",
+        "comment": "read"
+      },
+      {
+        "id": 19,
+        "habit_id": 2,
+        "date": "2026-08-24T18:00:00",
+        "comment": "read"
+      },
+      {
+        "id": 20,
+        "habit_id": 2,
+        "date": "2026-08-25T18:00:00",
+        "comment": "read"
+      },
+      {
+        "id": 21,
+        "habit_id": 2,
+        "date": "2026-08-26T18:00:00",
+        "comment": "read"
+      },
+      {
+        "id": 22,
+        "habit_id": 2,
+        "date": "2026-08-27T18:00:00",
+        "comment": "read"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Weekly review",
+    "description": "Review the past week and plan the next one",
+    "frequency": "weekly",
+    "start_date": "2026-08-03T00:00:00",
+    "executions": [
+      {
+        "id": 1,
+        "habit_id": 3,
+        "date": "2026-08-03T18:00:00",
+        "comment": "weekly review done"
+      },
+      {
+        "id": 2,
+        "habit_id": 3,
+        "date": "2026-08-10T18:00:00",
+        "comment": "weekly review done"
+      },
+      {
+        "id": 3,
+        "habit_id": 3,
+        "date": "2026-08-17T18:00:00",
+        "comment": "weekly review done"
+      },
+      {
+        "id": 4,
+        "habit_id": 3,
+        "date": "2026-08-24T18:00:00",
+        "comment": "weekly review done"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Gym session",
+    "description": "Go to the gym",
+    "frequency": "weekly",
+    "start_date": "2026-08-03T00:00:00",
+    "executions": [
+      {
+        "id": 1,
+        "habit_id": 4,
+        "date": "2026-08-03T18:00:00",
+        "comment": "workout"
+      },
+      {
+        "id": 3,
+        "habit_id": 4,
+        "date": "2026-08-17T18:00:00",
+        "comment": "workout"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Learn Analysis 1",
+    "description": "Work through the Analysis 1 course material",
+    "frequency": "daily",
+    "start_date": "2026-08-03T00:00:00",
+    "executions": [
+      {
+        "id": 1,
+        "habit_id": 5,
+        "date": "2026-08-03T18:00:00",
+        "comment": "studied"
+      },
+      {
+        "id": 2,
+        "habit_id": 5,
+        "date": "2026-08-05T18:00:00",
+        "comment": "studied"
+      },
+      {
+        "id": 3,
+        "habit_id": 5,
+        "date": "2026-08-08T18:00:00",
+        "comment": "studied"
+      },
+      {
+        "id": 4,
+        "habit_id": 5,
+        "date": "2026-08-12T18:00:00",
+        "comment": "studied"
+      },
+      {
+        "id": 5,
+        "habit_id": 5,
+        "date": "2026-08-17T18:00:00",
+        "comment": "studied"
+      },
+      {
+        "id": 6,
+        "habit_id": 5,
+        "date": "2026-08-23T18:00:00",
+        "comment": "studied"
+      },
+      {
+        "id": 7,
+        "habit_id": 5,
+        "date": "2026-08-30T18:00:00",
+        "comment": "studied"
+      }
+    ]
+  }
+]

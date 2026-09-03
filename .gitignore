@@ -5,3 +5,10 @@ __pycache__/
 .idea/
 .env
 *.pptx
+# python packaging artifacts
+build/
+dist/
+*.egg-info/
+# personal habit data stays local; only the curated sample is tracked
+data/*
+!data/repository.json
