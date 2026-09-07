@@ -2,6 +2,7 @@
 docs/Assignments Portfolio_DLBDSOOFPP01.pdf
 # personal submission documents stay local
 docs/Truemper-*.pdf
+docs/phase2_review.pdf
 .venv/
 __pycache__/
 .idea/
